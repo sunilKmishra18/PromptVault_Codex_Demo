@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Add Prompt | PromptVault{% endblock %}
+
+{% block content %}
+<section class="max-w-2xl mx-auto">
+  <h1 class="text-3xl font-bold mb-2">Add a Prompt</h1>
+  <p class="text-slate-600 mb-6">Capture a useful prompt with a clear title and category.</p>
+
+  <form method="post" class="bg-white border border-slate-200 rounded-xl shadow-sm p-6 space-y-5">
+    <div>
+      <label for="title" class="block text-sm font-medium mb-1">Title</label>
+      <input id="title" name="title" type="text" required value="{{ title if title else '' }}" class="w-full rounded-md border-slate-300 focus:border-indigo-500 focus:ring-indigo-500" placeholder="e.g. Product launch email" />
+    </div>
+
+    <div>
+      <label for="category" class="block text-sm font-medium mb-1">Category</label>
+      <input id="category" name="category" type="text" required value="{{ category if category else '' }}" class="w-full rounded-md border-slate-300 focus:border-indigo-500 focus:ring-indigo-500" placeholder="e.g. Marketing" />
+    </div>
+
+    <div>
+      <label for="description" class="block text-sm font-medium mb-1">Prompt</label>
+      <textarea id="description" name="description" rows="7" required class="w-full rounded-md border-slate-300 focus:border-indigo-500 focus:ring-indigo-500" placeholder="Write your full prompt here...">{{ description if description else '' }}</textarea>
+    </div>
+
+    <button type="submit" class="rounded-md bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 text-sm font-medium">Save Prompt</button>
+  </form>
+</section>
+{% endblock %}

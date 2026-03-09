@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Home | PromptVault{% endblock %}
+
+{% block content %}
+<section class="mb-8">
+  <h1 class="text-3xl font-bold mb-2">Saved Prompts</h1>
+  <p class="text-slate-600">Store and manage your best AI prompts in one place.</p>
+</section>
+
+{% if prompts %}
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+    {% for prompt in prompts %}
+      <article class="bg-white border border-slate-200 rounded-lg shadow-sm p-5 flex flex-col gap-4">
+        <div>
+          <h2 class="text-lg font-semibold">{{ prompt.title }}</h2>
+          <span class="inline-block mt-2 px-2.5 py-1 bg-indigo-100 text-indigo-700 text-xs rounded-full">{{ prompt.category }}</span>
+        </div>
+        <p class="text-sm text-slate-700 whitespace-pre-line">{{ prompt.description }}</p>
+        <button
+          class="copy-btn mt-auto inline-flex items-center justify-center rounded-md bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-3 py-2"
+          data-copy="{{ prompt.description|e }}"
+        >
+          Copy Prompt
+        </button>
+      </article>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="bg-white border border-dashed border-slate-300 rounded-lg p-10 text-center">
+    <p class="text-slate-600 mb-3">No prompts saved yet.</p>
+    <a href="{{ url_for('add_prompt') }}" class="inline-block rounded-md bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 text-sm">Add your first prompt</a>
+  </div>
+{% endif %}
+{% endblock %}
